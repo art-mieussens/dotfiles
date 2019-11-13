@@ -8,13 +8,22 @@ git init --bare $HOME/.dotfiles
 ```
 
 ### Set an Alias on your shell
-Use the _dotfiles_ command to call git overriding the work and git directories
+Use the _dotfiles_ command to call git overriding the work and git directories.
 ```
 alias dotfiles='/usr/bin/git --git-dir=/$HOME/.dotfiles/ --work-tree=$HOME'
 ```
-Now You can use the alias to manage your repository
+Now you can use the alias to manage your repository
 ```
 dotfile status
+```
+
+### Add (this) README.md file to the repository
+Put it under the .github directory to avoid polluting the home directory.
+```
+mkdir .github
+# Make the .github/README.md file
+dotfiles add .github/README.md
+dorfiles commit -m "Add .github/README.md"
 ```
 
 ### Add the .dotfiles directory to .gitignore to prevent issues*
