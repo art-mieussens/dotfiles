@@ -1,16 +1,15 @@
 # _.dotfiles_ management
-## Setup a bare git repository at $HOME/.dotfiles with a branch for each specific configuration.
-If you use different environments or platforms, a branch for each would keep all the  
+## Setup a bare git repository at $HOME/.dotfiles.git
 
 ### Create the bare repository
 ```
-git init --bare $HOME/.dotfiles
+git init --bare $HOME/.dotfiles.git
 ```
 
 ### Set an Alias on your shell
 Use the _dotfiles_ command to call git overriding the work and git directories.
 ```
-alias dotfiles='/usr/bin/git --git-dir=/$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles='/usr/bin/git --git-dir=/$HOME/.dotfiles.git/ --work-tree=$HOME'
 ```
 Now you can use the alias to manage your repository
 ```
@@ -23,12 +22,12 @@ Put it under the .github directory to avoid polluting the home directory.
 mkdir .github
 # Make the .github/README.md file
 dotfiles add .github/README.md
-dorfiles commit -m "Add .github/README.md"
+dotfiles commit -m "Add .github/README.md"
 ```
 
 ### Add the .dotfiles directory to .gitignore to prevent issues*
 ```
-echo ".dotfiles" >> .gitignore
+echo ".dotfiles.git" >> .gitignore
 dotfiles add .gitignore
 dotfiles commit -m "Add .gitignore"
 ```
@@ -39,18 +38,10 @@ dotfiles remote add origin https://www.github.com/username/repo.git
 dotfiles push origin master
 ```
 
-### Add a branch for each config
-```
-dotfile checkout -b manjaro-i3
-...
-dotfile push origin manjaro-i3
-```
-
 ### Now you can add your config files
 ```
 dotfiles add .vimrc
 dotfiles commit -m "Add vimrc"
-...
 dotfiles push
 ```
 
@@ -69,5 +60,13 @@ dotfiles checkout
 ```
 dotfiles config --local status.showUntrackedFiles no
 ```
+
+### Add a branch for each config
+```
+dotfile checkout -b manjaro-i3
+...
+dotfile push origin manjaro-i3
+```
+
 ------
 \* Check for validity
