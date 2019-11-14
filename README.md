@@ -63,12 +63,30 @@ dotfiles config --local status.showUntrackedFiles no
 
 ## Branching structure
 
-### Add a branch for each config
+Multiple platforms or configurations can be handled by a single repository by using branches for specific programs and branches for specific configurations.
+
+### Add a branch for a program configuration
 ```
-dotfile checkout -b manjaro-i3
+dotfile checkout -b ssh
 ...
-dotfile push origin manjaro-i3
+dotfile add .ssh
+...
+dotfile push origin ssh
 ```
 
-------
-\* Check for validity
+### Add another branch for a system configuration
+```
+dotfile checkout -b manjaro-i3
+dotfile push origin manjaro-i3
+```
+### Add a config file from another branch to a system configuration branch
+```
+dotfile checkout manjaro-i3
+dotfile ckeckout ssh -- .ssh 
+dotfile commit -m "Copy .ssh file from the ssh branch"
+
+#Edit your file as desired
+
+dotfile commit -m "modify .ssh with specifics for manjaro-i3"
+
+```
